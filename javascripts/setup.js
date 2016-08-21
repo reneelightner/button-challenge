@@ -1,8 +1,10 @@
 function setToggleLabel(toggle, target) {
   if (target.prop('disabled')) {
     toggle.html('Enable');
+    target.removeClass("enable").addClass("disable");
   } else {
     toggle.html('Disable');
+    target.addClass("enable").removeClass("disable");
   }
 };
 

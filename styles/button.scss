@@ -1,1 +1,67 @@
 // TODO: DEFINE YOUR BUTTON STYLES HERE
+
+/* button size */
+$buttonPadding: 0 12px; 
+$buttonFontSize: 13px; 
+$buttonHeight: 40px;
+$border-radius: 15px;
+
+/* disabled button colors */
+$disable-bg: #f1f1f1; 
+$disable-text: #a8a8a8; 
+$disable-hoverbg: #f1f1f1;
+
+/* enabled button colors */
+$enable-bg: #339966; 
+$enable-text: #fff; 
+$enable-hoverbg: #00cc66;
+
+@mixin button-color($bg, $text, $hoverbg) {
+	background-color: $bg;
+	color: $text;
+	&:hover{
+		background-color: $hoverbg;
+	}
+}
+
+@mixin shakeNo(){
+	@keyframes shakeNo { 
+	    0%, 100% {transform: translateX(0);} 
+	    50% {transform: translateX(-5px);} 
+	    25%, 75% {transform: translateX(5px);} 
+	}
+	animation-name: shakeNo;
+    animation-duration: 0.5s;
+}
+
+@mixin shakeYes(){
+	@keyframes shakeYes { 
+	    0%, 100% {transform: translateY(0);} 
+	    50% {transform: translateY(-5px);} 
+	    25%, 75% {transform: translateY(5px);} 
+	}
+	animation-name: shakeYes;
+    animation-duration: 1s;
+}
+
+#new-button{
+	padding: $buttonPadding;
+	font-size: $buttonFontSize;
+	height: $buttonHeight;
+	border-radius: $border-radius;
+	border: none;
+	outline: none;
+	display: block;
+	&.disable{
+		@include button-color($disable-bg, $disable-text, $disable-hoverbg);
+		cursor: not-allowed;
+		&:hover{
+            @include shakeNo;
+		}
+	}
+	&.enable{
+		@include button-color($enable-bg, $enable-text, $enable-hoverbg);
+		cursor: pointer;
+		@include shakeYes;
+	}
+}
